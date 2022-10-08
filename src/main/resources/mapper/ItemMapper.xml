@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group.weiyi.mapper.ItemMapper">
+    <insert id="addItem">
+        insert item(id,num,count,status,createtime,address,u_id)
+        select #{id},#{num}, #{count}, 1, #{createtime}, #{address}, #{u_id}
+
+    </insert>
+    <delete id="deleteItem">
+        delete from item where id=#{id}
+    </delete>
+
+    <select id="queryItem" resultType="com.group.weiyi.entity.Item">
+        select num,count,status,createtime,address,u_id from item where u_id=#{id}
+    </select>
+</mapper>

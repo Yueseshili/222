@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group.weiyi.mapper.MycollectionMapper">
+    <insert id="addMycollection">
+        insert mycollection(cdoctor, chospital, cproducts, cillness, cepartmene) values (#{doctor},#{hospital},#{product},#{illness},#{epartmene})
+    </insert>
+    <delete id="deleteMycollection">
+        delete from mycollection where id=#{id}
+    </delete>
+
+    <select id="queryMycollection" resultType="com.group.weiyi.entity.Mycollection">
+        select id, cdoctor, chospital, cproducts, cillness, cepartmene
+        from mycollection
+        where id =#{id}
+    </select>
+</mapper>

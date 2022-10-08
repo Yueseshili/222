@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group.weiyi.mapper.RegistrationMapper">
+    <insert id="addRegistration">
+        insert registration(u_id,doctor_id) values (#{u_id},#{doctor_id})
+    </insert>
+    <delete id="deleteRegistration">
+        delete from registration where id=#{id}
+    </delete>
+
+    <select id="queryRegistration" resultType="com.group.weiyi.entity.Registration">
+        select id, u_id, doctor_id from registration where id=#{id}
+    </select>
+</mapper>

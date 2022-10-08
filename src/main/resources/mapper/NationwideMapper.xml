@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group.weiyi.mapper.NationwideMapper">
+
+    <select id="findAllInfo" resultType="map">
+        SELECT name,grade,position,reception,inquiry,information FROM doctor WHERE name like "%"#{input}"%" or  position like "%"#{input}"%"
+        UNION ALL
+        SELECT hname,grade,address,intro,inquiry,type FROM hospital WHERE hname like "%"#{input}"%" or grade like "%"#{input}"%" or type like "%"#{input}"%"
+
+    </select>
+
+    <select id="findDoctor" resultType="com.group.weiyi.entity.Doctor">
+        SELECT name,grade,position,reception,inquiry,information FROM doctor
+    </select>
+
+    <select id="findHospital" resultType="com.group.weiyi.entity.Hospital">
+        SELECT hname,grade,address,intro,appointment,inquiry,type FROM hospital
+    </select>
+
+    <select id="findLocalDoctor" resultType="com.group.weiyi.entity.Doctor">
+        SELECT name,grade,position,reception,inquiry,information,localtype FROM doctor where localtype = 0
+    </select>
+
+    <select id="findLocalHospital" resultType="com.group.weiyi.entity.Hospital">
+        SELECT hname,grade,address,intro,inquiry,type,localtype FROM hospital where localtype = 0
+    </select>
+
+    <select id="findAllInfoDoctor" resultType="com.group.weiyi.entity.Doctor">
+        SELECT name,grade,position,reception,inquiry,information FROM doctor WHERE name like "%"#{input}"%"
+    </select>
+
+    <select id="findAllInfoHospital"  resultType="com.group.weiyi.entity.Hospital">
+        SELECT hname,grade,address,intro,inquiry,type FROM hospital WHERE hname like "%"#{input}"%"
+    </select>
+
+
+    <select id="findAllInfoConsultationnotes"  resultType="com.group.weiyi.entity.Consultationnotes">
+        SELECT id,ctnotes FROM consultationnotes WHERE ctnotes like "%"#{input}"%"
+    </select>
+</mapper>

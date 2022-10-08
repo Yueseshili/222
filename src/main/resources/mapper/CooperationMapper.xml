@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group.weiyi.mapper.CooperationMapper">
+<insert id="addAdvertising">
+insert cooperation(companyname,name,position,phone,intention) values (#{companyname},#{name},#{position},#{phone},#{intention})
+</insert>
+    <insert id="addCompany">
+        insert cooperation(companyname,name,position,phone,intention) values (#{companyname},#{name},#{position},#{phone},#{intention})
+    </insert>
+    <insert id="addDrugstore">
+        insert cooperation(companyname,name,position,phone,intention) values (#{companyname},#{name},#{position},#{phone},#{intention})
+    </insert>
+    <insert id="addHospital">
+        insert cooperation(hospitalname,hospitaltype,name,position,phone,intention) values (#{hospitalname},#{hospitaltype},#{name},#{position},#{phone},#{intention})
+    </insert>
+    <insert id="addPatientNum">
+        insert cooperation(companyname,name,position,phone,intention) values (#{companyname},#{name},#{position},#{phone},#{intention})
+    </insert>
+    <insert id="addLive">
+        insert cooperation(companyname,name,position,phone,intention) values (#{companyname},#{name},#{position},#{phone},#{intention})
+    </insert>
+    <insert id="addRecruit">
+        insert cooperation(hospitalname,hospitaltype,name,position,phone,intention) values (#{hospitalname},#{hospitaltype},#{name},#{position},#{phone},#{intention})
+    </insert>
+
+</mapper>

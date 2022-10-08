@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group.weiyi.mapper.HospitalMapper">
+    <insert id="addHospital">
+        insert into hospital (hname,address,grade,intro,type,appointment,inquiry) values (${hname},${address},${grade},${intro},${type},${appointment},${inquiry})
+    </insert>
+    <select id="selectAllHospital" resultType="hospital">
+    select * from hospital;
+</select>
+</mapper>

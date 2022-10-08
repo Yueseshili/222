@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group.weiyi.mapper.DoctorMapper">
+    <resultMap id="resultFindAllDoctor" type="com.group.weiyi.entity.Doctor">
+    <id property="id" column="id"></id>
+    <result property="name" column="name"></result>
+    <result property="grade" column="grade"></result>
+    <result property="information" column="information"></result>
+    <result property="inquiry" column="inquiry"></result>
+    <result property="position" column="position"></result>
+    <result property="reception" column="reception"></result>
+    <result property="eId" column="e_id"></result>
+
+    <association property="epartmene" column="e_id" javaType="com.group.weiyi.entity.Epartmene">
+        <id property="id" column="e_id"></id>
+        <result property="name" column="ename"></result>
+        <result property="hId" column="h_id"></result>
+    </association>
+    <association property="hospital" column="h_id" javaType="com.group.weiyi.entity.Hospital">
+        <id property="id" column="h_id"></id>
+        <result property="hname" column="hname"></result>
+    </association>
+    </resultMap>
+
+    <select id="findDoctorByHospital" resultType="com.group.weiyi.entity.Doctor">
+        select * from doctor where h_id=${id};
+    </select>
+
+    <select id="findAllDoctor" resultMap="resultFindAllDoctor">
+        SELECT d.id,d.name,d.grade,d.position,d.reception,d.inquiry,d.information,d.e_id,e.id,e.ename,e.h_id,h.id,h.hname FROM doctor d left join
+                                                                                                                               epartmene e on d.e_id = e.id left join hospital h on e.h_id = h.id
+    </select>
+    <select id="findDoctorByClinic" resultType="com.group.weiyi.entity.Doctor">
+        select * from doctor where c_id=${c_id}
+    </select>
+
+    <select id="findDoctorById" resultType="com.group.weiyi.entity.Doctor">
+        select * from doctor where  id=#{id}
+
+    </select>
+</mapper>

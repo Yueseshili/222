@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group.weiyi.mapper.HealthMapper">
+
+    <resultMap id="resultFindAllInfoInQuiry" type="com.group.weiyi.entity.Doctor">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+        <result property="grade" column="grade"></result>
+        <result property="information" column="information"></result>
+        <result property="inquiry" column="inquiry"></result>
+        <result property="position" column="position"></result>
+        <result property="reception" column="reception"></result>
+        <result property="eId" column="e_id"></result>
+
+        <association property="epartmene" column="e_id" javaType="com.group.weiyi.entity.Epartmene">
+            <id property="id" column="e_id"></id>
+            <result property="name" column="ename"></result>
+          <result property="hId" column="h_id"></result>
+        </association>
+        <association property="hospital" column="h_id" javaType="com.group.weiyi.entity.Hospital">
+            <id property="id" column="h_id"></id>
+            <result property="hname" column="hname"></result>
+        </association>
+    </resultMap>
+
+
+    <select id="findAllInfoInQuiry" resultMap="resultFindAllInfoInQuiry">
+
+  SELECT d.id,d.name,d.grade,d.position,d.reception,d.inquiry,d.information,d.e_id,e.id,e.ename,e.h_id,h.id,h.hname FROM doctor d left join
+      epartmene e on d.e_id = e.id left join hospital h on e.h_id = h.id  WHERE d.name like "%"#{input}"%" or  d.position like "%"#{input}"%" or  e.ename like "%"#{input}"%"
+                                                                             or  h.hname like "%"#{input}"%"
+
+     </select>
+
+    <insert id="addPatient">
+        insert into patient(name,idcard,sex,age,phone,status) values (#{name},#{idcard},#{sex},#{age},#{phone},#{status})
+    </insert>
+
+    <insert id="addBuyMed">
+        insert into buymed(buyname,buytime,buyplace,medname,mednumber) values (#{buyname},#{buytime},#{buyplace},#{medname},#{mednumber})
+    </insert>
+
+    <select id="findBuyMed" resultType="com.group.weiyi.entity.BuyMed">
+        select * from buymed
+    </select>
+
+    <insert id="addClinicreCords">
+        insert into clinicrecords(attendees, clinictime, hospital, epartmene, doname, diagnosis, diseasedescription) values (#{attendees},#{clinictime},#{hospital},#{epartmene},#{doname},#{diagnosis},#{diseasedescription})
+    </insert>
+
+    <insert id="addMedical">
+        insert into medicalrecord(attendees, medicaltime, medicalinstitution, reportname) values (#{attendees},#{medicaltime},#{medicalinstitution},#{reportname})
+    </insert>
+
+    <select id="findMedical" resultType="com.group.weiyi.entity.MedicalRecord">
+        select * from medicalrecord
+    </select>
+
+    <select id="findClinicreCords" resultType="com.group.weiyi.entity.ClinicreCords">
+        select * from clinicrecords
+    </select>
+
+    <delete id="delPatient">
+        delete from patient where id = #{id}
+    </delete>
+
+    <delete id="delBuyMed">
+        delete from buymed where id = #{id}
+    </delete>
+
+    <delete id="delClinicreCords">
+        delete from clinicrecords where id = #{id}
+    </delete>
+
+    <delete id="delMedical">
+        delete from medicalrecord where id = #{id}
+    </delete>
+
+    <update id="upBuyMed">
+        update buymed set buyname=#{buyname},buytime = #{buytime},buyplace = #{buyplace},medname = #{medname},mednumber = #{mednumber} where id = #{id}
+    </update>
+
+    <update id="upClinicreCords">
+        update clinicrecords set  attendees = #{attendees},clinictime = #{clinictime},hospital = #{hospital},epartmene = #{epartmene},doname = #{doname},diagnosis = #{diagnosis},diseasedescription = #{diseasedescription} where id = #{id}
+    </update>
+
+    <update id="upMedical">
+        update medicalrecord set attendees = #{attendees},medicaltime = #{medicaltime},medicalinstitution = #{medicalinstitution},reportname = #{reportname} where id = #{id}
+    </update>
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group.weiyi.mapper.UserMapper">
+    <insert id="addUserByPhone">
+        insert into user (name,phone,code) values (#{name},#{phone},#{code})
+    </insert>
+    <update id="updateUser">
+        update user set name=#{name},password=#{password},idcard=#{idcard},code=#{code} where id = #{id}
+    </update>
+
+
+    <select id="findUserByPhone" resultType="com.group.weiyi.entity.User">
+        select * from user where phone = #{phone}
+    </select>
+    <select id="findUserByPhoneAndCode" resultType="java.lang.Integer">
+        select * from user where phone = #{phone} and code = #{code}
+    </select>
+    <select id="findUserById" resultType="com.group.weiyi.entity.User">
+        select * from user where id = #{id}
+    </select>
+</mapper>

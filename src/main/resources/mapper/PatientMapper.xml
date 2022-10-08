@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group.weiyi.mapper.PatientMapper">
+    <insert id="addPatient">
+        insert patient(name,idcard,sex,age,phone,status) values (#{name},#{idcard},#{sex},#{age},#{phone},#{status})
+    </insert>
+    <select id="queryMydoctor" resultType="com.group.weiyi.entity.Mydoctor">
+        select id,
+               name,
+               grade,
+               position,
+               reception,
+               inquiry,
+               information,
+               e_id,
+               c_id,
+               h_id,
+               localtpye
+        from mydoctor
+        where id = #{id}
+
+    </select>
+
+</mapper>
